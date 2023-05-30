@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Clock</title>
+    <link rel="stylesheet" type="text/css" href="design.css">
+    <style>
+        body{
+            background-color: black;
+        }
+        .Clock{
+            position: absolute;
+            color: aqua;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            font-size: 100px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+    </style>   
+</head>
+<body>
+    <div id="Digital Clock" class="Clock"></div>
+    <script type="text/javascript">
+        function showTime(){                // declaring a function for time
+            var date = new Date();          // getting a date from the function and storing it into a variable date
+            var h =date.getHours() ;        //getting hour value from function and storing it into variable h
+            var m =date.getMinutes();       //getting minute value and saving it into m
+            var s =date.getSeconds();       //getting seconds value and saving it into s
+            var session = "AM";             //set session variable value to text "AM"
+
+            if(h==0){ 
+                h = 12;                     // 12 hr format, if hour is below 12
+            }
+
+            if(h>12){ 
+                h = h-12;                   //formula for 12 hr, format if hour goes past 12
+                session = "PM";
+            }
+             
+            h = (h<10)?"0"+h:h;             //adds 0 if hour no is less than 10(0 to 9)
+            m = (m<10)?"0"+m:m;             //adds 0 to minutes no
+            s = (s<10)?"0"+s:s;             //adds 0 to seconds value
+
+            document.getElementById("Digital Clock").innerHTML = h + ":" + m + ":" + s + " " + session;
+            setTimeout(showTime,1000);      //displaying h+m+s+am/pm and repeats for each second (1sec = 1000 msec) 
+        }
+        showTime();
+    </script>
+    <h1 style="color: aqua;">Welcome To My First Web Project!!</h1>
+
+    <p style="color: aqua;"> This is Digital Clock which displays 12 hr format</p>
+</body>
+</html>
